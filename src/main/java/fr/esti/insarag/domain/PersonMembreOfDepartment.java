@@ -1,6 +1,5 @@
 package fr.esti.insarag.domain;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,10 +7,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "fait_partie_de")
+@Table(name = "person_membre_of_department")
 @Data
-@Builder
-public class FaitPartieDe extends AbstractAuditingEntity implements Serializable {
+
+public class FaitPartieDe implements Serializable {
 
     private static final long serialVersionUID = 4160445378322766447L;
 
@@ -24,9 +23,8 @@ public class FaitPartieDe extends AbstractAuditingEntity implements Serializable
 
     @Embeddable
     @Data
-    @Builder
     @NoArgsConstructor
-    public class EstMembreDeId implements Serializable {
+    class EstMembreDeId implements Serializable {
 
         private static final long serialVersionUID = 6093002910664696529L;
 

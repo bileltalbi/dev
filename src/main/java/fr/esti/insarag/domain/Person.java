@@ -1,19 +1,21 @@
 package fr.esti.insarag.domain;
 
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import fr.esti.insarag.config.Constants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "PERSONNE")
+@Table(name = "personne")
 @Data
-@Builder
 @NoArgsConstructor
-public class Personne extends AbstractAuditingEntity implements Serializable {
+public class Personne implements Serializable {
 
     private static final long serialVersionUID = -2968477231436966666L;
 
@@ -31,7 +33,7 @@ public class Personne extends AbstractAuditingEntity implements Serializable {
     private String prenom;
 
     @ManyToOne
-    @JoinColumn(name = "id_grade")
+    @JoinColumn(name = "code_grade")
     private RefGrade grade;
 
     @Size(max = 50)
@@ -65,5 +67,17 @@ public class Personne extends AbstractAuditingEntity implements Serializable {
     @Size(max = 20)
     @Column(name = "num_secu", length = 20)
     private String numSecurite;
+
+    @NotNull
+    @Pattern(regexp = Constants.LOGIN_REGEX)
+    @Size(min = 1, max = 50)
+    @Column(length = 50, unique = true, nullable = false)
+    private String login;
+
+    @JsonIgnore
+    @NotNull
+    @Size(min = 60, max = 60)
+    @Column(name = "password", length = 60, nullable = false)
+    private String password;
 
 }

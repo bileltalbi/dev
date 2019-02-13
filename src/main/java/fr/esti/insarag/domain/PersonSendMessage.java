@@ -1,6 +1,5 @@
 package fr.esti.insarag.domain;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,31 +7,30 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "envoyer")
+@Table(name = "person_send_message")
 @Data
-@Builder
-public class Destinea extends AbstractAuditingEntity implements Serializable {
+
+public class PersonSendMessage implements Serializable {
 
     private static final long serialVersionUID = 8189431637778204308L;
 
     @EmbeddedId
-    EnvoyerId pk;
+    SenderId pk;
 
-    public Destinea() {
-        pk = new EnvoyerId();
+    public PersonSendMessage() {
+        pk = new SenderId();
     }
 
     @Embeddable
     @Data
-    @Builder
     @NoArgsConstructor
-    public class EnvoyerId implements Serializable {
+    class SenderId implements Serializable {
 
         private static final long serialVersionUID = 132493646945216062L;
 
         @ManyToOne
-        @JoinColumn(name = "id_personne")
-        Personne personne;
+        @JoinColumn(name = "id_person")
+        Person person;
 
         @ManyToOne
         @JoinColumn(name = "id_message")

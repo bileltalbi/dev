@@ -1,26 +1,14 @@
 package fr.esti.insarag.service.dto;
 
-import fr.esti.insarag.config.Constants;
 import fr.esti.insarag.domain.Personne;
-import fr.esti.insarag.domain.RefGrade;
-import fr.esti.insarag.domain.RefSituation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.time.Instant;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
- * A DTO representing a Personne, with his authorities.
+ * A DTO representing a Personne.
  */
 @Data
 @AllArgsConstructor
@@ -66,8 +54,8 @@ public class PersonneDTO {
         this.numero = personne.getNumero();
         this.matricule = personne.getMatricule();
         this.numPasseport = personne.getNumPasseport();
-        this.personneAPrevenir = new PersonneDTO(personne.getPersonneAPrevenir());
-        this.situation = new SituationDTO(personne.getSituation());
+        this.personneAPrevenir = personne.getPersonneAPrevenir() != null ? new PersonneDTO(personne.getPersonneAPrevenir()) : null;
+        this.situation = personne.getSituation() != null ? new SituationDTO(personne.getSituation()) : null;
     }
 
 }

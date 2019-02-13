@@ -1,6 +1,5 @@
 package fr.esti.insarag.domain;
 
-import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -12,20 +11,24 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "REF_GRADE")
+@Table(name = "ref_departement")
 @Data
-@Builder
-public class RefDepartement extends AbstractAuditingEntity implements Serializable {
 
-    private static final long serialVersionUID = -7675750207636668028L;
+public class RefDepartement implements Serializable {
+
+    private static final long serialVersionUID = -8988645549219541471L;
 
     @NotNull
     @Size(max = 10)
     @Id
-    @Column(name = "code_grade", length = 10)
+    @Column(name = "code_departement", length = 10)
     private String code;
 
     @Size(max = 50)
-    @Column(name = "libelle", length = 50)
-    private String libelle;
+    @Column(name = "nom", length = 50)
+    private String nom;
+
+    @Size(max = 50)
+    @Column(name = "dependance", length = 50)
+    private String dependance;
 }

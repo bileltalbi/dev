@@ -15,16 +15,16 @@ public class Recipient implements Serializable {
     private static final long serialVersionUID = 1746840282138170033L;
 
     @EmbeddedId
-    DestineaId pk;
+    RecipientId pk;
 
-    public Destinea() {
-        pk = new DestineaId();
+    public Recipient() {
+        pk = new RecipientId();
     }
 
     @Embeddable
     @Data
     @NoArgsConstructor
-    class DestineaId implements Serializable {
+    class RecipientId implements Serializable {
 
         private static final long serialVersionUID = 7690536255479562878L;
 

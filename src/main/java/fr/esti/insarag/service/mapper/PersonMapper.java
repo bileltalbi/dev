@@ -1,81 +1,32 @@
-package fr.esti.service.mapper;
+package fr.esti.insarag.service.mapper;
 
-import fr.esti.domain.Authority;
-import fr.esti.domain.User;
-import fr.esti.service.dto.UserDTO;
-
-import org.springframework.stereotype.Service;
-
-import java.util.*;
-import java.util.stream.Collectors;
+import fr.esti.insarag.domain.Person;
+import fr.esti.insarag.service.dto.PersonDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 
 /**
- * Mapper for the entity User and its DTO called UserDTO.
+ * Mapper for the entity Person and its DTO {@link PersonDTO}.
  *
- * Normal mappers are generated using MapStruct, this one is hand-coded as MapStruct
- * support is still in beta, and requires a manual step with an IDE.
+ * @author msalem
  */
-@Service
-public class UserMapper {
+@Mapper(componentModel = "spring")
+public interface PersonMapper {
 
-    public List<UserDTO> usersToUserDTOs(List<User> users) {
-        return users.stream()
-            .filter(Objects::nonNull)
-            .map(this::userToUserDTO)
-            .collect(Collectors.toList());
-    }
+    @Mappings({
+            @Mapping(source = "idPersonContact", target = "contact.id"),
+            @Mapping(source = "codeSituation", target = "situation.code"),
+            @Mapping(source = "codeGrade", target = "grade.code")
+    })
+    Person toEntity(PersonDTO dto);
 
-    public UserDTO userToUserDTO(User user) {
-        return new UserDTO(user);
-    }
+    @Mappings({
+            @Mapping(source = "contact.id", target = "idPersonContact"),
+            @Mapping(source = "situation.code", target = "codeSituation"),
+            @Mapping(source = "grade.code", target = "codeGrade")
+    })
+    PersonDTO toDto(Person person);
 
-    public List<User> userDTOsToUsers(List<UserDTO> userDTOs) {
-        return userDTOs.stream()
-            .filter(Objects::nonNull)
-            .map(this::userDTOToUser)
-            .collect(Collectors.toList());
-    }
-
-    public User userDTOToUser(UserDTO userDTO) {
-        if (userDTO == null) {
-            return null;
-        } else {
-            User user = new User();
-            user.setId(userDTO.getId());
-            user.setLogin(userDTO.getLogin());
-            user.setFirstName(userDTO.getFirstName());
-            user.setLastName(userDTO.getLastName());
-            user.setEmail(userDTO.getEmail());
-            user.setImageUrl(userDTO.getImageUrl());
-            user.setActivated(userDTO.isActivated());
-            user.setLangKey(userDTO.getLangKey());
-            Set<Authority> authorities = this.authoritiesFromStrings(userDTO.getAuthorities());
-            user.setAuthorities(authorities);
-            return user;
-        }
-    }
-
-
-    private Set<Authority> authoritiesFromStrings(Set<String> authoritiesAsString) {
-        Set<Authority> authorities = new HashSet<>();
-
-        if(authoritiesAsString != null){
-            authorities = authoritiesAsString.stream().map(string -> {
-                Authority auth = new Authority();
-                auth.setName(string);
-                return auth;
-            }).collect(Collectors.toSet());
-        }
-
-        return authorities;
-    }
-
-    public User userFromId(Long id) {
-        if (id == null) {
-            return null;
-        }
-        User user = new User();
-        user.setId(id);
-        return user;
-    }
 }
+

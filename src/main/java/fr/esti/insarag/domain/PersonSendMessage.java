@@ -15,16 +15,16 @@ public class PersonSendMessage implements Serializable {
     private static final long serialVersionUID = 8189431637778204308L;
 
     @EmbeddedId
-    SenderId pk;
+    PersonSendMessageId pk;
 
     public PersonSendMessage() {
-        pk = new SenderId();
+        pk = new PersonSendMessageId();
     }
 
     @Embeddable
     @Data
     @NoArgsConstructor
-    class SenderId implements Serializable {
+    class PersonSendMessageId implements Serializable {
 
         private static final long serialVersionUID = 132493646945216062L;
 

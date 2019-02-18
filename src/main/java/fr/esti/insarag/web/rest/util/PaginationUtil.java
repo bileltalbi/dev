@@ -1,4 +1,4 @@
-package fr.esti.web.rest.util;
+package fr.esti.insarag.web.rest.util;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;

@@ -15,16 +15,16 @@ public class PersonSendedAlert implements Serializable {
     private static final long serialVersionUID = -8134914416404256176L;
 
     @EmbeddedId
-    EstEnvoyerId pk;
+    PersonSendedAlertId pk;
 
     public PersonSendedAlert() {
-        pk = new EstEnvoyerId();
+        pk = new PersonSendedAlertId();
     }
 
     @Embeddable
     @Data
     @NoArgsConstructor
-    class EstEnvoyerId implements Serializable {
+    class PersonSendedAlertId implements Serializable {
 
         private static final long serialVersionUID = -2808236164457595641L;
 

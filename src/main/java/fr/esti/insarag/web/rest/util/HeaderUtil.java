@@ -1,4 +1,4 @@
-package fr.esti.web.rest.util;
+package fr.esti.insarag.web.rest.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

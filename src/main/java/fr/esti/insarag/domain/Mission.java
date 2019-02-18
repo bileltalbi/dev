@@ -1,67 +1,43 @@
 package fr.esti.insarag.domain;
 
-import lombok.Builder;
+import fr.esti.insarag.domain.converter.LocalDateTimeToSQLTimestampConverter;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
-@Table(name = "PERSONNE")
+@Table(name = "mission")
 @Data
-@Builder
-public class Personne extends AbstractAuditingEntity implements Serializable {
 
-    private static final long serialVersionUID = -2968477231436966666L;
+@NoArgsConstructor
+public class Mission implements Serializable {
+
+    private static final long serialVersionUID = 7423804761945200280L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_personne")
+    @Column(name = "id_mission")
     private Long id;
 
     @Size(max = 50)
-    @Column(name = "nom", length = 50)
-    private String nom;
+    @Column(name = "place", length = 50)
+    private String place;
 
-    @Size(max = 50)
-    @Column(name = "prenom", length = 50)
-    private String prenom;
+    @Column(name = "starting_date")
+    @Convert(converter = LocalDateTimeToSQLTimestampConverter.class)
+    private Date startingDate;
 
-    @ManyToOne
-    @JoinColumn(name = "id_grade")
-    private RefGrade grade;
-
-    @Size(max = 50)
-    @Column(name = "affectation", length = 50)
-    private String affectation;
-
-    @Size(max = 50)
-    @Column(name = "adresse_pro", length = 50)
-    private String adressePro;
-
-    @Size(max = 10)
-    @Column(name = "numero", length = 10)
-    private Long numero;
+    @Column(name = "on_going")
+    private Boolean onGoing;
 
     @Size(max = 20)
-    @Column(name = "matricule", length = 20)
-    private String matricule;
-
-    @Size(max = 20)
-    @Column(name = "num_passeport", length = 20)
-    private String numPasseport;
-
-    @ManyToOne
-    @JoinColumn(name = "id_personne_a_prevenir")
-    Personne personneAPrevenir;
-
-    @ManyToOne
-    @JoinColumn(name = "id_situation")
-    RefSituation situation;
-
-    @Size(max = 20)
-    @Column(name = "num_secu", length = 20)
-    private String numSecurite;
+    @Column(name = "nb_contributor", length = 20)
+    private Long nbContributor;
 
 }

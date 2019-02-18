@@ -10,30 +10,30 @@ import java.io.Serializable;
 @Table(name = "person_has_position")
 @Data
 
-public class Possede implements Serializable {
+public class PersonHasPosition implements Serializable {
 
     private static final long serialVersionUID = -5472362820919243458L;
 
     @EmbeddedId
-    PossedeId pk;
+    PersonHasPositionId pk;
 
-    public Possede() {
-        pk = new PossedeId();
+    public PersonHasPosition() {
+        pk = new PersonHasPositionId();
     }
 
     @Embeddable
     @Data
     @NoArgsConstructor
-    class PossedeId implements Serializable {
+    class PersonHasPositionId implements Serializable {
 
         private static final long serialVersionUID = 7735188560831207911L;
 
         @ManyToOne
-        @JoinColumn(name = "id_personne")
-        Personne personne;
+        @JoinColumn(name = "id_person")
+        Person person;
 
         @ManyToOne
-        @JoinColumn(name = "id_poste")
-        Poste poste;
+        @JoinColumn(name = "id_position")
+        Position position;
     }
 }

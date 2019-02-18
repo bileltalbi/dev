@@ -10,21 +10,21 @@ import java.io.Serializable;
 @Table(name = "person_accept_mission")
 @Data
 
-public class PersonAccepteMission implements Serializable {
+public class PersonAcceptMission implements Serializable {
 
     private static final long serialVersionUID = 5908143420857456327L;
 
     @EmbeddedId
-    PersonAccepteMissionId pk;
+    PersonAcceptMissionId pk;
 
-    public PersonAccepteMission() {
-        pk = new PersonAccepteMissionId();
+    public PersonAcceptMission() {
+        pk = new PersonAcceptMissionId();
     }
 
     @Embeddable
     @Data
     @NoArgsConstructor
-    class PersonAccepteMissionId implements Serializable {
+    class PersonAcceptMissionId implements Serializable {
 
         private static final long serialVersionUID = -3599331240581409967L;
 

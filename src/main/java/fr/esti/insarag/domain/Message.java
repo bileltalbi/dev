@@ -1,40 +1,40 @@
 package fr.esti.insarag.domain;
 
-import lombok.Builder;
+import fr.esti.insarag.domain.converter.LocalDateTimeToSQLTimestampConverter;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "mission")
+@Table(name = "message")
 @Data
-@Builder
-@NoArgsConstructor
-public class Mission extends AbstractAuditingEntity implements Serializable {
 
-    private static final long serialVersionUID = 7423804761945200280L;
+@NoArgsConstructor
+public class Message implements Serializable {
+
+    private static final long serialVersionUID = 3722437663716189319L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_mission")
+    @Column(name = "id_message")
     private Long id;
 
+    @NotNull
+    @Column(name = "message_date", nullable = false)
+    @Convert(converter = LocalDateTimeToSQLTimestampConverter.class)
+    private LocalDateTime dateMessage;
+
     @Size(max = 50)
-    @Column(name = "lieu", length = 50)
-    private String lieu;
+    @Column(name = "content", length = 500)
+    private String content;
 
-    @Column(name = "date_debut")
-    private Date dateDebut;
-
-    @Column(name = "en_cours")
-    private Boolean enCours;
-
-    @Size(max = 20)
-    @Column(name = "nb_participant", length = 20)
-    private Long nbParticipant;
+    @ManyToOne
+    @JoinColumn(name = "id_sender")
+    Person sender;
 
 }

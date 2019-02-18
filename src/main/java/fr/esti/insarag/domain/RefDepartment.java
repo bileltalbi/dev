@@ -11,24 +11,24 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "ref_departement")
+@Table(name = "ref_department")
 @Data
 
-public class RefDepartement implements Serializable {
+public class RefDepartment implements Serializable {
 
     private static final long serialVersionUID = -8988645549219541471L;
 
     @NotNull
     @Size(max = 10)
     @Id
-    @Column(name = "code_departement", length = 10)
+    @Column(name = "code_department", length = 10)
     private String code;
 
     @Size(max = 50)
-    @Column(name = "nom", length = 50)
-    private String nom;
+    @Column(name = "name", length = 50)
+    private String name;
 
     @Size(max = 50)
-    @Column(name = "dependance", length = 50)
-    private String dependance;
+    @Column(name = "dependence", length = 50)
+    private String dependence;
 }

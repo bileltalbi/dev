@@ -22,8 +22,8 @@ public class PointInterest implements Serializable {
     private Long id;
 
     @Size(max = 50)
-    @Column(name = "nom", length = 50)
-    private String nom;
+    @Column(name = "name", length = 50)
+    private String name;
 
     @Column(name = "longitude")
     private BigDecimal longitude;

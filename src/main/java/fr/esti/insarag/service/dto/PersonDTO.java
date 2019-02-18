@@ -1,61 +1,51 @@
 package fr.esti.insarag.service.dto;
 
-import fr.esti.insarag.domain.Personne;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Size;
 
 /**
- * A DTO representing a Personne.
+ * A DTO representing a Person.
  */
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
-public class PersonneDTO {
+@AllArgsConstructor
+public class PersonDTO {
 
     private Long id;
 
     @Size(max = 50)
-    private String nom;
+    private String lastName;
 
     @Size(max = 50)
-    private String prenom;
+    private String firstName;
 
     @Size(max = 50)
-    private String affectation;
+    private String assignment;
 
     @Size(max = 50)
-    private String adressePro;
+    private String addressPro;
 
     @Size(max = 10)
-    private Long numero;
+    private Long number;
 
     @Size(max = 20)
-    private String matricule;
+    private String registrationNumber;
 
     @Size(max = 20)
-    private String numPasseport;
+    private String passportNumber;
 
-    PersonneDTO personneAPrevenir;
+    Long idPersonContact;
 
-    SituationDTO situation;
+    String codeSituation;
+
+    String codeGrade;
 
     @Size(max = 20)
-    private String numSecurite;
-
-    public PersonneDTO(Personne personne) {
-        this.id = personne.getId();
-        this.nom = personne.getNom();
-        this.prenom = personne.getPrenom();
-        this.affectation = personne.getAffectation();
-        this.adressePro = personne.getAdressePro();
-        this.numero = personne.getNumero();
-        this.matricule = personne.getMatricule();
-        this.numPasseport = personne.getNumPasseport();
-        this.personneAPrevenir = personne.getPersonneAPrevenir() != null ? new PersonneDTO(personne.getPersonneAPrevenir()) : null;
-        this.situation = personne.getSituation() != null ? new SituationDTO(personne.getSituation()) : null;
-    }
+    private String securityNumber;
 
 }

@@ -10,27 +10,27 @@ import java.io.Serializable;
 @Table(name = "person_membre_of_salon")
 @Data
 
-public class EstMembreDe implements Serializable {
+public class PersonMembreOfSalon implements Serializable {
 
     private static final long serialVersionUID = 4231716246287164222L;
 
     @EmbeddedId
-    EstMembreDeId pk;
+    PersonMembreOfSalonId pk;
 
-    public EstMembreDe() {
-        pk = new EstMembreDeId();
+    public PersonMembreOfSalon() {
+        pk = new PersonMembreOfSalonId();
     }
 
     @Embeddable
     @Data
     @NoArgsConstructor
-    class EstMembreDeId implements Serializable {
+    class PersonMembreOfSalonId implements Serializable {
 
         private static final long serialVersionUID = 7081173396916060091L;
 
         @ManyToOne
-        @JoinColumn(name = "id_personne")
-        Personne personne;
+        @JoinColumn(name = "id_person")
+        Person person;
 
         @ManyToOne
         @JoinColumn(name = "id_salon")

@@ -9,31 +9,30 @@ import java.io.Serializable;
 @Entity
 @Table(name = "person_membre_of_department")
 @Data
-
-public class FaitPartieDe implements Serializable {
+public class PersonMembreOfDepartment implements Serializable {
 
     private static final long serialVersionUID = 4160445378322766447L;
 
     @EmbeddedId
-    EstMembreDeId pk;
+    PersonMembreOfDepartmentId pk;
 
-    public FaitPartieDe() {
-        pk = new EstMembreDeId();
+    public PersonMembreOfDepartment() {
+        pk = new PersonMembreOfDepartmentId();
     }
 
     @Embeddable
     @Data
     @NoArgsConstructor
-    class EstMembreDeId implements Serializable {
+    class PersonMembreOfDepartmentId implements Serializable {
 
         private static final long serialVersionUID = 6093002910664696529L;
 
         @ManyToOne
-        @JoinColumn(name = "id_poste")
-        Poste poste;
+        @JoinColumn(name = "id_position")
+        Position position;
 
         @ManyToOne
-        @JoinColumn(name = "id_departement")
-        RefDepartement departement;
+        @JoinColumn(name = "id_department")
+        RefDepartment department;
     }
 }

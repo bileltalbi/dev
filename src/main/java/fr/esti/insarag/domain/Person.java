@@ -12,61 +12,61 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "personne")
+@Table(name = "person")
 @Data
 @NoArgsConstructor
-public class Personne implements Serializable {
+public class Person implements Serializable {
 
-    private static final long serialVersionUID = -2968477231436966666L;
+    private static final long serialVersionUID = -2028890520599014884L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_personne")
+    @Column(name = "id_person")
     private Long id;
 
     @Size(max = 50)
-    @Column(name = "nom", length = 50)
-    private String nom;
+    @Column(name = "last_name", length = 50)
+    private String lastName;
 
     @Size(max = 50)
-    @Column(name = "prenom", length = 50)
-    private String prenom;
+    @Column(name = "first_name", length = 50)
+    private String firstName;
 
     @ManyToOne
     @JoinColumn(name = "code_grade")
     private RefGrade grade;
 
     @Size(max = 50)
-    @Column(name = "affectation", length = 50)
-    private String affectation;
+    @Column(name = "assignment", length = 50)
+    private String assignment;
 
     @Size(max = 50)
-    @Column(name = "adresse_pro", length = 50)
-    private String adressePro;
+    @Column(name = "address_pro", length = 50)
+    private String addressPro;
 
     @Size(max = 10)
-    @Column(name = "numero", length = 10)
-    private Long numero;
+    @Column(name = "person_number", length = 10)
+    private Long number;
 
     @Size(max = 20)
-    @Column(name = "matricule", length = 20)
-    private String matricule;
+    @Column(name = "registration_number", length = 20)
+    private String registrationNumber;
 
     @Size(max = 20)
-    @Column(name = "num_passeport", length = 20)
-    private String numPasseport;
+    @Column(name = "passport_number", length = 20)
+    private String passportNumber;
 
     @ManyToOne
-    @JoinColumn(name = "id_personne_a_prevenir")
-    Personne personneAPrevenir;
+    @JoinColumn(name = "id_contact")
+    Person contact;
 
     @ManyToOne
     @JoinColumn(name = "id_situation")
     RefSituation situation;
 
     @Size(max = 20)
-    @Column(name = "num_secu", length = 20)
-    private String numSecurite;
+    @Column(name = "secu_number", length = 20)
+    private String securityNumber;
 
     @NotNull
     @Pattern(regexp = Constants.LOGIN_REGEX)

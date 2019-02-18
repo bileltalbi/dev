@@ -1,4 +1,4 @@
-package fr.esti.config;
+package fr.esti.insarag.config;
 
 /**
  * Application constants.
